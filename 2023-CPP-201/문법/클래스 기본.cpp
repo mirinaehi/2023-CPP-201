@@ -5,7 +5,9 @@ using namespace std;
 
 // 여러 data들을 하나의 의미있는 구조체로 묶어서 관리
 // 구조체, 클래스는 일반적으로 단어의 첫 글자를 대문자로 합시다
-struct Student {
+// class는 디폴트가 private (struct는 디폴트가 public)
+class Student {
+public:
 	string name;
 	
 	// 성능때문에 hakbun을 문자열로 하지 않음
@@ -23,7 +25,7 @@ struct Student {
 int main(void)
 {
 	// (struct Student)자료형(C++에서는 Student만 써도 됩니다)
-	struct Student stu1;
+	class Student stu1;
 	stu1.name = "박남길";
 	stu1.hakbun = 2100;
 	stu1.age = 18;
