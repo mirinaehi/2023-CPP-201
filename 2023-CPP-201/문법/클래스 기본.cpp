@@ -33,9 +33,8 @@ public:
 
 
 int main(void)
-{
-	// (struct Student)자료형(C++에서는 Student만 써도 됩니다)
-	class Student stu1;
+{	
+	Student stu1;
 	stu1.name = "박남길";
 	stu1.hakbun = 2100;
 	stu1.age = 18;
