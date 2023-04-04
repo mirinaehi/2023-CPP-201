@@ -8,6 +8,28 @@ using namespace std;
 // class는 디폴트가 private (struct는 디폴트가 public)
 class Student {
 public:
+	// 생성자(constructor) : 객체가 생성될 때 호출되는 함수
+	// 생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다
+	Student()
+	{
+		hakbun = 2100;
+		name = "박남길";
+		age = 18;
+		sex = 0;
+		department = "뉴미디어소프트웨어";
+	}
+
+	// class는 멤버변수를 가질 수 있다
+	void print(void)
+	{
+		cout << "이름: " << name << endl;
+		cout << "학번: " << hakbun << endl;
+		cout << "나이: " << age << endl;
+		cout << "성별(0)남자, (1)여자: " << sex << endl;
+		cout << "학과: " << department << endl;
+	}
+
+private:
 	string name;
 	
 	// 성능때문에 hakbun을 문자열로 하지 않음
@@ -19,31 +41,13 @@ public:
 	// 0: 남자, 1: 여자
 	int sex;
 	string department;
-
-	// 생성자(constructor) : 객체가 생성될 때 호출되는 함수
-	// 생성자를 정의하지 않으면 default로 매개변수가 없는 생성자가 정의된다
-	// Student(){}
-
-	// class는 멤버변수를 가질 수 있다
-	void print(void)
-	{
-		cout << "이름: " << name << endl;
-		cout << "학번: " << hakbun << endl;
-		cout << "나이: " << age << endl;
-		cout << "성별(0)남자, (1)여자: " << sex << endl;
-		cout << "학과: " << department << endl;
-	}
 };
 
 
 int main(void)
 {	
-	Student stu1;
-	stu1.name = "박남길";
-	stu1.hakbun = 2100;
-	stu1.age = 18;
-	stu1.sex = 0;
-	stu1.department = "뉴미디어소프트웨어";
+	// Student stu1;
+	Student stu1 = Student();
 
 	stu1.print();
 	
