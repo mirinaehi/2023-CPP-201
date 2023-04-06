@@ -3,6 +3,11 @@
 
 using namespace std;
 
+struct Actor {
+	string name;
+	string dialog;
+};
+
 // 여러 data들을 하나의 의미있는 구조체로 묶어서 관리
 // 구조체, 클래스는 일반적으로 단어의 첫 글자를 대문자로 합시다
 // class는 디폴트가 private (struct는 디폴트가 public)
@@ -55,8 +60,17 @@ private:
 int main(void)
 {	
 	Student stu1 = Student("뉴진스", 2100, 18, 1, "뉴미디어소프트웨어");
+	// stu1.print();
 
-	stu1.print();
-	
+	struct Actor KYLee;
+	KYLee.name = "이경영";
+	KYLee.dialog = "진행시켜";
+
+	struct Actor* ptr = &KYLee;
+
+	// ptr->name, (*ptr).name 같은 결과
+	cout << "이름 : " << ptr->name << endl;
+	cout << "대사 : " << (*ptr).dialog << endl;
+
 	return 0;
 }
