@@ -57,9 +57,10 @@ int main(void)
 	// stu1.print();
 
 	// 동적할당
-	// TODO : 동적할당 해제하기
 	Student* stu2 = new Student("서강준", 3100, 31, 0, "방송연예과");
 	stu2->print();
+
+	delete stu2;
 
 
 	return 0;
