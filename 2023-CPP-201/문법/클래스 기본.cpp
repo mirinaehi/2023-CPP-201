@@ -23,13 +23,15 @@ public:
 		department = "뉴미디어소프트웨어";
 	}
 
-	Student(string _name, int _hakbun, int _age, int _sex, string _department)
+	Student(string name, int hakbun, int age, int sex, string department)
 	{
-		hakbun = _hakbun;
-		name = _name;
-		age = _age;
-		sex = _sex;
-		department = _department;
+		// this : 객체 자기자신을 가리키는 포인터
+		// 매개변수명과 멤버변수명이 같아도 구별가능
+		this->hakbun = hakbun;
+		this->name = name;
+		this->age = age;
+		this->sex = sex;
+		this->department = department;
 	}
 
 	// class는 멤버변수를 가질 수 있다
@@ -60,17 +62,8 @@ private:
 int main(void)
 {	
 	Student stu1 = Student("뉴진스", 2100, 18, 1, "뉴미디어소프트웨어");
-	// stu1.print();
+	stu1.print();
 
-	struct Actor KYLee;
-	KYLee.name = "이경영";
-	KYLee.dialog = "진행시켜";
-
-	struct Actor* ptr = &KYLee;
-
-	// ptr->name, (*ptr).name 같은 결과
-	cout << "이름 : " << ptr->name << endl;
-	cout << "대사 : " << (*ptr).dialog << endl;
 
 	return 0;
 }
