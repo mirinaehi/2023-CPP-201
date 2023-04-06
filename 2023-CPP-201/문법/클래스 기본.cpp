@@ -3,11 +3,6 @@
 
 using namespace std;
 
-struct Actor {
-	string name;
-	string dialog;
-};
-
 // 여러 data들을 하나의 의미있는 구조체로 묶어서 관리
 // 구조체, 클래스는 일반적으로 단어의 첫 글자를 대문자로 합시다
 // class는 디폴트가 private (struct는 디폴트가 public)
@@ -23,15 +18,11 @@ public:
 		department = "뉴미디어소프트웨어";
 	}
 
-	Student(string name, int hakbun, int age, int sex, string department)
+	// : 멤버변수 초기화를 하면 const 멤버변수도 초기화 할 수 있다
+	Student(string _name, int _hakbun, int _age, int _sex, string _department)
+		: name(_name), hakbun(_hakbun), age(_age)
+		, sex(_sex), department(_department)
 	{
-		// this : 객체 자기자신을 가리키는 포인터
-		// 매개변수명과 멤버변수명이 같아도 구별가능
-		this->hakbun = hakbun;
-		this->name = name;
-		this->age = age;
-		this->sex = sex;
-		this->department = department;
 	}
 
 	// class는 멤버변수를 가질 수 있다
