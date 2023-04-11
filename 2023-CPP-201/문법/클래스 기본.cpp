@@ -9,14 +9,7 @@ using namespace std;
 class Student {
 public:
 	// 생성자(constructor) : 객체가 생성될 때 호출되는 함수
-	Student()
-	{
-		hakbun = 2100;
-		name = "박남길";
-		age = 18;
-		sex = 0;
-		department = "뉴미디어소프트웨어";
-	}
+	Student(){}
 
 	// : 멤버변수 초기화를 하면 const 멤버변수도 초기화 할 수 있다
 	Student(string _name, int _hakbun, int _age, int _sex, string _department)
@@ -34,6 +27,12 @@ public:
 		cout << "성별(0)남자, (1)여자: " << sex << endl;
 		cout << "학과: " << department << endl;
 	}
+
+	void set_name(string _name) { name = _name; }
+	void set_hakbun(int _hakbun) { hakbun = _hakbun; }
+	void set_age(int _age) { age = _age; }
+	void set_sex(int _sex) { sex = _sex; }
+	void set_department(string _department) { department = _department; }
 
 private:
 	string name;
@@ -55,9 +54,9 @@ int main(void)
 	// 정적할당 : 메모리의 크기가 컴파일할 때 결정됨
 	// Student stu1 = Student("뉴진스", 2100, 18, 1, "뉴미디어소프트웨어");
 	// stu1.print();
-	Student stu3[2];
+	/*Student stu3[2];
 	for (int i = 0; i < 2; i++)
-		stu3[i].print();
+		stu3[i].print();*/
 
 
 	// 동적할당 : 메모리의 크기가 실행할 때(runtime) 결정됨. heap영역
@@ -67,6 +66,18 @@ int main(void)
 	// delete stu2;
 	
 	Student* stu4 = new Student[2];
+	stu4[0].set_age(18);
+	stu4[0].set_name("지수");
+	stu4[0].set_hakbun(2112);
+	stu4[0].set_sex(1);
+	stu4[0].set_department("뉴미디어소프트웨어");
+
+	stu4[1].set_age(18);
+	stu4[1].set_name("혁수");
+	stu4[1].set_hakbun(2118);
+	stu4[1].set_sex(0);
+	stu4[1].set_department("뉴미디어소프트웨어");
+
 	for (int i = 0; i < 2; i++)
 		stu4[i].print();	// 배열의 요소에 해당하는 객체는 멤버를 .으로 접근
 	delete[] stu4;
