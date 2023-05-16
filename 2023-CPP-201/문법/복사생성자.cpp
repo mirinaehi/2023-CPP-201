@@ -15,8 +15,10 @@ public:
 	}
 
 	// 복사생성자(얕은 복사로 인하여 문제점이 발생)
-	Munja(const Munja& m) : str_(m.str_)
+	Munja(const Munja& m)
 	{
+		str_ = new char[strlen(m.str_) + 1];
+		strcpy(str_, m.str_);
 		cout << "복사생성자 호출" << endl;
 	}
 
