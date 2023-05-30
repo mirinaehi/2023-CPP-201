@@ -88,6 +88,8 @@ int main(void)
 			
 		// update
 		
+		printf("%d %d\n", snake.x_, snake.y_);
+		
 		if (snake.dir_ == DIR_UP) {
 			snake.y_--;
 		}
@@ -100,9 +102,18 @@ int main(void)
 		else if (snake.dir_ == DIR_LEFT) {
 			snake.x_--;
 		}
-		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 		
+		// 바운더리를 넘었을 때 더이상 벗어나지 않도록
+		if (snake.x_ < 0)
+			snake.x_ = 0;
+		if (snake.x_ >= w)
+			snake.x_ = w - 1;
+		if (snake.y_ < 0)
+			snake.y_ = 0;
+		if (snake.y_ >= h)
+			snake.y_ = h - 1;
 
+		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
 
 		// 뱀이 사과를 먹으면
 		if (snake.x_ == apple.x_ && snake.y_ == apple.y_)
