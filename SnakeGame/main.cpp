@@ -106,7 +106,8 @@ int main(void)
 			apple.x_ = rand() % w;
 			apple.y_ = rand() % h;
 			apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
-			snake.length_++;
+			if(snake.length_ < BODY_MAX)
+				snake.length_++;
 		}
 
 		// 몸통에 대한 이동
