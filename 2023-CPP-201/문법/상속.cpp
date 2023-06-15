@@ -13,7 +13,8 @@ public:
 		cout << "Animal 생성자()" << endl;
 	}
 	~Animal() { cout << "Animal 소멸자()" << endl; }
-	void Roar(void) { cout << "Animal 짖다" << endl; }
+	// 가상함수 : Java처럼 동적바인딩
+	virtual void Roar(void) { cout << "Animal 짖다" << endl; }
 	void Eat(void) { cout << "Animal 먹다" << endl; }
 	void Sleep(void) { cout << "Animal 자다" << endl; }
 
@@ -50,6 +51,6 @@ int main(void)
 	delete animal;
 
 	animal = new Rabbit(COLOR_RED, 3, 20);
-	animal->Roar();	// 동물 짖어 (C++은 호출할 멤버함수가 정적(컴파일시간)으로 결정)
+	animal->Roar();	// 깡총 깡총
 	delete animal;
 }
