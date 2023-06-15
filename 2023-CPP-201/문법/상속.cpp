@@ -35,7 +35,8 @@ public:
 	// 함수 override
 	// 다형성(polymorphism) : 시그니쳐(반환형, 이름, 매개변수가 모두 같은)가 같은 함수임에도 
 	// 불구하고 다르게 실행되는 것
-	void Roar(void)
+	// override : 부모 함수 시그니쳐가 존재하지 않으면 에러발생(실수방지)
+	void Roar(void) override
 	{
 		cout << "깡총깡총" << endl;
 	}
