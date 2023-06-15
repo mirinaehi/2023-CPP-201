@@ -12,7 +12,7 @@ public:
 	{
 		cout << "Animal 생성자()" << endl;
 	}
-	~Animal() { cout << "Animal 소멸자()" << endl; }
+	virtual ~Animal() { cout << "Animal 소멸자()" << endl; }
 	// 가상함수 : Java처럼 동적바인딩
 	virtual void Roar(void) { cout << "Animal 짖다" << endl; }
 	void Eat(void) { cout << "Animal 먹다" << endl; }
@@ -30,7 +30,7 @@ public:
 	{
 		cout << "Rabbit 생성자()" << endl;
 	}
-	~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
+	virtual ~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
 	
 	// 함수 override
 	// 다형성(polymorphism) : 시그니쳐(반환형, 이름, 매개변수가 모두 같은)가 같은 함수임에도 
@@ -47,7 +47,6 @@ private:
 
 int main(void)
 {
-	// 소멸자에 virtual를 안하면 자식 소멸자가 호출되지 않아서 메모리 누수현상이 발생
 	Animal* animal = new Rabbit(COLOR_RED, 3, 20);
 	animal->Roar();	// 깡총 깡총
 	delete animal;
