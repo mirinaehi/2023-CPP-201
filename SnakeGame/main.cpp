@@ -22,10 +22,33 @@ public:
 
 class Snake {
 public:
+	Snake(int dir, int length, float thickness, int block)
+		:dir_(dir), length_(length), thickness_(thickness)
+	{
+		inner_ = block - thickness_;
+	}
+
+	int GetDir(void) { return dir_; }
+	int GetLength(void) { return length_; }
+	float GetThickness(void) { return thickness_; }
+	float GetInner(void) { return inner_; }
+
+	void SetDir(int dir) { dir_ = dir; }
+	void SetLength(int length) { length_ = length; }
+	void SetThickness(float thickness) { thickness_= thickness; }
+	void SetInner(float inner) { inner_ = inner; }
+
+	// 길이 1 증가
+	void IncLength(void) { length_++; }
+
+	// TODO : 나중에 private로 바꾸기
+	Object body_[BODY_MAX];
+
+private:
 	int dir_;
 	int length_;
-	float thickness;			// 외피두께
-	Object body_[BODY_MAX];
+	float thickness_;			// 외피두께
+	float inner_;				// 내부두께
 };
 
 
@@ -54,12 +77,9 @@ int main(void)
 
 	srand(time(NULL));
 
-	Snake snake;
-	snake.dir_ = DIR_DOWN;
-	snake.length_ = 1;
-	snake.thickness = 5.f;
-	float snake_inner = block - snake.thickness;
+	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
 
+	float snake_inner = snake.GetInner();
 	// TODO : 뱀과 사과가 걸치지 않도록 수정하기
 	for (int i = 0; i < BODY_MAX; i++) {
 		snake.body_[i].x_ = -100;
@@ -94,17 +114,17 @@ int main(void)
 		// input
 		// 네 개의 방향키가 중복으로 input되면 안됨
 		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			snake.dir_ = DIR_UP;
+			snake.SetDir(DIR_UP);
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			snake.dir_ = DIR_DOWN;
+			snake.SetDir(DIR_DOWN);
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			snake.dir_ = DIR_RIGHT;
+			snake.SetDir(DIR_RIGHT);
 		}
 			
 		else if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			snake.dir_ = DIR_LEFT;
+			snake.SetDir(DIR_LEFT);
 		}
 
 		// update
@@ -114,27 +134,27 @@ int main(void)
 			apple.x_ = rand() % w;
 			apple.y_ = rand() % h;
 			apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
-			if(snake.length_ < BODY_MAX)
-				snake.length_++;
+			if(snake.GetLength() < BODY_MAX)
+				snake.IncLength();
 		}
 
 		// 몸통에 대한 이동
-		for (int i = snake.length_ - 1; i > 0; i--) {
+		for (int i = snake.GetLength() - 1; i > 0; i--) {
 			snake.body_[i].x_ = snake.body_[i - 1].x_;
 			snake.body_[i].y_ = snake.body_[i - 1].y_;
 		}
 
 		// 머리에 대한 이동
-		if (snake.dir_ == DIR_UP) {
+		if (snake.GetDir() == DIR_UP) {
 			snake.body_[0].y_--;
 		}
-		else if (snake.dir_ == DIR_DOWN) {
+		else if (snake.GetDir() == DIR_DOWN) {
 			snake.body_[0].y_++;
 		}
-		else if (snake.dir_ == DIR_RIGHT) {
+		else if (snake.GetDir() == DIR_RIGHT) {
 			snake.body_[0].x_++;
 		}
-		else if (snake.dir_ == DIR_LEFT) {
+		else if (snake.GetDir() == DIR_LEFT) {
 			snake.body_[0].x_--;
 		}
 
@@ -149,7 +169,7 @@ int main(void)
 			snake.body_[0].y_ = h - 1;
 		
 
-		for (int i = 0; i < snake.length_; i++) {
+		for (int i = 0; i < snake.GetLength(); i++) {
 			snake.body_[i].sprite_.setPosition(snake.body_[i].x_ * block, snake.body_[i].y_ * block);
 		}
 
